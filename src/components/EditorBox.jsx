@@ -20,7 +20,8 @@ import {
 	TableColumnResize,
 } 
 from 'ckeditor5';
-import axios from 'axios';
+import api from '../tokenRefresh';
+
 
 
 const EditorBox = () => {
@@ -80,7 +81,7 @@ const EditorBox = () => {
 
       // Sending formData to Django API using AXIOS
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/create_article/', formData)
+        const response = await api.post('/api/create_article/', formData)
         // console.log(response.data)
 
         // Reset the form fields successfull submission

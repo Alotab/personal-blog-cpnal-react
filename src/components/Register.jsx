@@ -1,7 +1,7 @@
-
-
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import api from '../tokenRefresh';
+
 
 const Register = () => {
     const [csrfToken, setCsrfToken] = useState('');
@@ -43,7 +43,7 @@ const Register = () => {
         console.log('Data:', userData)
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/auth/users/', userData, {
+            const response = await api.post('/auth/users/', userData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': csrfToken
