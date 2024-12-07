@@ -1,25 +1,27 @@
 import React, { useState } from 'react'
 // import { Editor as TineMCE } from '@tinymce/tinymce-react';
 import { CKEditor, useCKEditorCloud } from '@ckeditor/ckeditor5-react';
-import {
-  CodeBlock, 
-  MediaEmbed,
-  Underline,
-  BlockQuote,
-  Heading,
-	Image,
-  ImageUpload,
-	PictureEditing,
-  Indent,
-	IndentBlock,
-	Link,
-	List,
-  Mention,
-	Paragraph,
-  Table,
-	TableColumnResize,
-} 
-from 'ckeditor5';
+import 'ckeditor5/ckeditor5.css';
+
+// import {
+//   CodeBlock, 
+//   MediaEmbed,
+//   Underline,
+//   BlockQuote,
+//   Heading,
+// 	Image,
+//   ImageUpload,
+// 	PictureEditing,
+//   Indent,
+// 	IndentBlock,
+// 	Link,
+// 	List,
+//   Mention,
+// 	Paragraph,
+//   Table,
+// 	TableColumnResize,
+// } 
+// from 'ckeditor5';
 import api from '../tokenRefresh';
 
 
@@ -259,21 +261,21 @@ const EditorBox = () => {
               />
             </div>
               
-              <div className="tags">
-                <p>Add Tags:</p>
-                <input 
-                  name='tags'
-                  type='text' 
-                  placeholder='tags'
-                  value={tags}
-                  onChange={(e) => setTags(e.target.value)}
-                />
-              </div>
+            <div className="tags">
+              <p>Add Tags:</p>
+              <input 
+                name='tags'
+                type='text' 
+                placeholder='tags'
+                value={tags}
+                onChange={(e) => setTags(e.target.value)}
+              />
+            </div>
               
-              <button type="submit" disabled={!title || !content || !snippet || !status || !tags}>
-                  Save Article
-              </button>
-              {!loading}
+            <button type="submit" disabled={!title || !content || !snippet || !status || !tags}>
+                Save Article
+            </button>
+            {!loading}
               
           </form>
           
