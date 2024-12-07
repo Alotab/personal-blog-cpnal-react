@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo2.svg';
 import React from 'react'
 
@@ -36,17 +37,9 @@ const Navbar = () => {
                         <nav>
                             <ul id="primary-navigation" data-visible="false"  className="primary-navigation">
                                 {/* {% if request.user.is_authenticated %} */}
-                                <li><a href="{% url 'blog:create' %}" className="sign-in-link write-link" id="sign-in"><i className="ri-edit-line"></i>Write</a></li>
-
-                                <li><a href="{% url 'portfolio' %}" className="portfolio-link">Portfolio</a></li>
-                                <li><a href="{% url 'logout' %}" className="sign-in-link" id="sign-in">Signout</a></li>
-                                
-                                {/* {% else %} */}
-                                {/* <!--<li className="active"><a href="{% url 'blog:home' %}" className="home-link">Home</a></li>--> */}
-                                {/* <li><a href="{% url 'portfolio' %}" className="portfolio-link">Portfolio</a></li> */}
-                                {/* <!--<li><a href="{% url 'login' %}" className="sign-in-link">Sign-In</a></li>--> */}
-                                {/* <!-- <li><a href="{% url 'signup' %}" className="create-account-link">Create account</a></li> --> */}
-                                {/* {% endif %} */}
+                                <li> <Link to={"/create-post"}>Write</Link></li>
+                                <li> <Link to={"/portfolio"}>Portfolio</Link></li>
+                                <li> <Link to={"/"}>Signout</Link></li>
                             </ul>
                         </nav>
                     </div>

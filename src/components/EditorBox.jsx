@@ -1,32 +1,16 @@
 import React, { useState } from 'react'
+
 // import { Editor as TineMCE } from '@tinymce/tinymce-react';
 import { CKEditor, useCKEditorCloud } from '@ckeditor/ckeditor5-react';
+import { FaArrowLeftLong } from "react-icons/fa6";
 import 'ckeditor5/ckeditor5.css';
-
-// import {
-//   CodeBlock, 
-//   MediaEmbed,
-//   Underline,
-//   BlockQuote,
-//   Heading,
-// 	Image,
-//   ImageUpload,
-// 	PictureEditing,
-//   Indent,
-// 	IndentBlock,
-// 	Link,
-// 	List,
-//   Mention,
-// 	Paragraph,
-//   Table,
-// 	TableColumnResize,
-// } 
-// from 'ckeditor5';
 import api from '../tokenRefresh';
 
 
 
+
 const EditorBox = () => {
+  
     const [loading, setLoading] = useState(true);
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
@@ -49,13 +33,13 @@ const EditorBox = () => {
     const handleSubmit = async (e) => {
       e.preventDefault()
       const formData = new FormData();
-      formData.append('content', content)
+      formData.append('content', content);
       formData.append('title', title); // Append title field
       formData.append('tags', tagsArray.join(','));
       formData.append('status', status); // Append status field
-      formData.append('snippet', snippet)
+      formData.append('snippet', snippet);
       if (image) {
-        formData.append('image', image)
+        formData.append('image', image);
       }
 
       // Send the FormData to Django API to create a new post in the database
@@ -83,7 +67,7 @@ const EditorBox = () => {
 
       // Sending formData to Django API using AXIOS
       try {
-        const response = await api.post('/api/create_article/', formData)
+        const response = await api.post('/api/create_article/', formData);
         // console.log(response.data)
 
         // Reset the form fields successfull submission
@@ -146,7 +130,6 @@ const EditorBox = () => {
 
     return (
       <div>
-          {loading}
           <form action='submit' onSubmit={handleSubmit}>
             <div className="title">
               <input 
@@ -272,15 +255,15 @@ const EditorBox = () => {
               />
             </div>
               
-            <button type="submit" disabled={!title || !content || !snippet || !status || !tags}>
+            <button 
+              type="submit" 
+              disabled={!title || !content || !snippet || !status || !tags}>
                 Save Article
             </button>
             {!loading}
               
           </form>
-          
       </div>
-      
     );
 };
 
