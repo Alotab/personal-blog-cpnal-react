@@ -2,14 +2,16 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import Portfolio from './components/Portfolio.tsx'
-import CreatePost from './components/CreatePost.tsx'
+import Portfolio from './components/Portfolio.jsx'
+import CreatePost from './components/CreatePost.jsx'
 import { 
   Outlet, 
   RouterProvider, 
   ScrollRestoration, 
   createBrowserRouter 
 } from 'react-router-dom'
+import Register from './components/Register.jsx'
+import Login from './components/Login.jsx'
 
 
 const RouterLayout = () => {
@@ -38,7 +40,15 @@ const router = createBrowserRouter([
       {
         path: "/create-post",
         element: <CreatePost />,
-      }
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
     ]
   }
 ])

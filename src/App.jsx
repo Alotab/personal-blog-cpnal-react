@@ -1,5 +1,5 @@
 import Editor from "./components/EditorBox"
-import Homepage from "./components/Homepage"
+import Homepage from "./components/Homepag."
 import Navbar from "./components/Navbar"
 
 
