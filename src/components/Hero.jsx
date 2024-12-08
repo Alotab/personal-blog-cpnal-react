@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import homeImge from "../assets/images/custome_home.avif"
 import PostCard from './PostCard'
 
 
 
+
 const Hero = () => {
+  
+
+
   return (
     <div className='middle-colume' id="post-container">
         <div className="community-post">
@@ -26,8 +30,8 @@ const Hero = () => {
                   <p>Create Account</p>
               </Link>
         </div>
-
         <PostCard />
+
 
     </div>
   )
