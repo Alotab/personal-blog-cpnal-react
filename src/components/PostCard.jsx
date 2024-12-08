@@ -5,6 +5,40 @@ import axios from 'axios';
 const Hero = () => {
   const [posts, setPosts] = useState([]);
 
+  const setPublishData = (item) => {
+    const publishedData = new Date(item.publish);
+    const formattedDate = publishedData.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric'
+    })
+    return formattedDate;
+  }
+
+  const getRealTimeDateFormat = (item) => {
+    const now = new Date();
+    const difference = now - new Date(item.publish);
+    const minutes = Math.floor(difference / 60000);
+  
+    if (minutes === 0) {
+      return "Just now";
+    } else if (minutes === 1) {
+      return "1 min ago";
+    } else if (minutes < 60) {
+      return `${minutes} mins ago`;
+    } else if (minutes < 1440) {
+      return "Today";
+    } else if (minutes < 43200) {
+      return "Yesterday";
+    } else {
+      const monthsAgo = Math.floor(minutes / 43200);
+      const formattedDate = new Date(date).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric'
+      });
+      return `${formattedDate} (${monthsAgo} months ago)`;
+    }
+  }
+
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -33,7 +67,7 @@ const Hero = () => {
                             </div>
                             <div className="post-author-details">
                                     <Link to={"/portfolio"}><p>{item?.author?.first_name} {item?.author?.last_name}</p></Link>
-                                    {/* <p id="time-tag"  className="post-date">{{ post.publish |date:'M d' }} &middot; {{ post.get_readtime }} read</p> */}
+                                    <p id="time-tag"  className="post-date">{getRealTimeDateFormat(item)} &middot;  {item?.read_time} read</p>
                             </div>
                             
                         </div>

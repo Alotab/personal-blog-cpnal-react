@@ -11,8 +11,8 @@ const Navbar = () => {
             <div className="nav-main">
                 <div className="logo">
                     <div className="main-logo">
-                        <a href="{% url 'blog:home' %}">
-                            <img src={logo} alt="logo" /></a>
+                        <Link to={"/"}><a><img src={logo} alt="logo" /></a></Link>
+                            
                     </div>
                 </div>
         
