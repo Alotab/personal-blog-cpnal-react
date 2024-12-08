@@ -12,13 +12,17 @@ import {
 } from 'react-router-dom'
 import Register from './components/Register.jsx'
 import Login from './components/Login.jsx'
+import Layout from './components/Layout.jsx'
+import PostDetail from './components/PostDetail.jsx'
 
 
 const RouterLayout = () => {
   return (
    <>
-      <ScrollRestoration />
-      <Outlet />
+      <Layout>
+        <ScrollRestoration />
+        <Outlet />
+      </Layout>
    </>
   )
 }
@@ -36,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/portfolio",
         element: <Portfolio />,
+      },
+      {
+        path: "/postdetail",
+        element: <PostDetail />,
       },
       {
         path: "/create-post",

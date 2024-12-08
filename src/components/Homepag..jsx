@@ -7,7 +7,7 @@ import PostCard from './PostCard'
 
 const Homepage = () => {
   return (
-    <div className='main-content ck-content'>
+    <div className='main-content'>
         <Sidebar />
         <Hero />
     </div>
