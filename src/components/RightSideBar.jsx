@@ -5,7 +5,7 @@ import React from 'react'
 const RightSideBar = () => {
   return (
     <>
-        <div class="right-colume"></div>
+        <div className="right-colume"></div>
     </>
   )
 }
