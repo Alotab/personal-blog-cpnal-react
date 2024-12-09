@@ -2449,7 +2449,6 @@ button .trending-post-headline h2{
   font-weight: 600;
   color: rgb(51 65 85 / var(--tw-text-opacity));
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
-  display: none;
 }
 .hide-socialmedia{
   display: none;
