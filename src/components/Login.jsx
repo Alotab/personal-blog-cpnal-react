@@ -4,11 +4,9 @@ import api from '../tokenRefresh'
 
 
 
-
 const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
 
 
     const handleSubmit =async (e) => {
@@ -19,7 +17,6 @@ const Login = () => {
         loginData.append('password', password);
 
       
-
         try {
             await api.post(
                 '/auth/jwt/create/', loginData
@@ -34,10 +31,9 @@ const Login = () => {
         } catch (error) {
             console.error('Failed to Login:', error)
         }
-
-
     }
 
+    
   return (
     <div>
         <form action="" onSubmit={handleSubmit}>

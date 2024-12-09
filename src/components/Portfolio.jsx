@@ -57,9 +57,6 @@ const Portfolio = () => {
                         <a href="https://www.linkedin.com/in/alotab/ " target="_blank">
                             <FaLinkedin />
                         </a>
-                        {/* <a href="https://twitter.com/alazkaBoi " target="_blank">< className="ri-twitter-fill"></i></a> */}
-                        {/* <a href="https://github.com/Alotab" target="_blank">< className="ri-github-fill"></i></a> */}
-                        {/* <a href="https://www.linkedin.com/in/alotab/" target="_blank">< class="ri-linkedin-box-fill"></i></a> */}
                     </div>
                 </div>
         

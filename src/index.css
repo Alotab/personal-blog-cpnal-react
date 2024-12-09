@@ -2339,18 +2339,18 @@ button .trending-post-headline h2{
 }
 
 .share-scroll{
-  background: var(--share-background);
+  display: flex;
+  flex: 1;
+  /* flex-basis: 25%; */
   width: 300px;
   height: 45px;
-  display: flex;
-  /*position: fixed;*/
-  align-items: center;
+  justify-content: space-between;
+  /* align-items: center; */
   text-align: center;
-  bottom: 3%;
-
+  align-content: center;
+  background: var(--share-background);
   border-radius: 30px;
   border: 1px solid rgb(194, 191, 191);
-  
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
   transition: all 0.2s ease;
 }
@@ -2363,33 +2363,39 @@ button .trending-post-headline h2{
 }
 .social-share{
   border-right: 1px solid rgba(199, 195, 195, 0.4);
-  border-left-width: 1px;
-  line-height: inherit;
+  /* border-left-width: 1px; */
+  width: 40px;
+  height: 40px;
   border-right-style: 10px;
   align-items: center;
   text-align: center;
-  flex-basis: 25%;
+  align-content: center;
+  flex: 1;
   position: relative;
 }
+
 .social-share:nth-child(4){
   border-right: none;
 }
 .social-share i{
-  font-size: 2.2rem;
+  width: 40px;
+  height: 40px;
+  font-size: 1.7rem;
   color: var(--share-social);
  
   opacity: 0.7;
   cursor: pointer;
-  font-family: inherit;
-  font-weight: inherit;
-  line-height: inherit;
+  align-items: center;
+  align-content: center;
   transition: background 0.1s;
 }
 .social-share i{
-  background: transparent;
+  /* background: transparent; */
 }
 .social-share i:hover{
   background: transparent;
+  align-items: center;
+  align-content: center;
   border-radius: 50%;
   padding: 7px;
   background: var(--share-iconHover);
@@ -2443,7 +2449,6 @@ button .trending-post-headline h2{
   font-weight: 600;
   color: rgb(51 65 85 / var(--tw-text-opacity));
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
-  display: none;
 }
 .hide-socialmedia{
   display: none;
