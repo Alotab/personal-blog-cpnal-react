@@ -1,12 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { BiShareAlt } from "react-icons/bi";
-// import { CiBookmark } from 'react-icons/ci';
-import { BiCommentDots } from "react-icons/bi";
-import { FaRegHeart } from "react-icons/fa";
-import { FaRegBookmark } from "react-icons/fa6";
-import { GrShareOption } from "react-icons/gr";
 
 
 
@@ -58,9 +52,6 @@ const PostDetail = () => {
         setMouseOverComment(false);
         setMouseOverLike(false)
     };
-
-
-
 
 
 

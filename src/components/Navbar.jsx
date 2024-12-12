@@ -1,9 +1,26 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo2.svg';
 import React from 'react'
+import { useApiContext } from '../context/ApiProvider';
+
+// import { useDispatch, useSelector } from 'react-redux';
+
 
 
 const Navbar = () => {
+    const { userName } = useApiContext();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+    const logOut = () => {
+        // setUserName('');
+        // setAccessToken('');
+        // setRefreshToken('');
+        localStorage.clear();
+        navigate('portfolio');
+    };
+
   return (
     <>
         <header>
@@ -36,10 +53,15 @@ const Navbar = () => {
                     <div className="subheader" id="nav-menu">
                         <nav>
                             <ul id="primary-navigation" data-visible="false"  className="primary-navigation">
-                                {/* {% if request.user.is_authenticated %} */}
+                                
                                 <li> <Link to={"/create-post"}>Write</Link></li>
                                 <li> <Link to={"/portfolio"}>Portfolio</Link></li>
-                                <li> <Link to={"/"}>Signout</Link></li>
+                                {userName 
+                                ?  <li><Link to={"/"} onClick={logOut}>Logout</Link></li>
+                                :
+                                    <li><Link to={"login"}>Login</Link></li>
+                                }
+                                <li> <Link to={"/profile"}>Profile</Link></li>
                             </ul>
                         </nav>
                     </div>
