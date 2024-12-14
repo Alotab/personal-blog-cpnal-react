@@ -40,7 +40,7 @@ const Register = () => {
         //     email,
         //     password
         // };
-        console.log('Data:', userData)
+        // console.log('Data:', userData)
 
         try {
             const response = await api.post('/auth/users/', userData, {
@@ -49,7 +49,7 @@ const Register = () => {
                     'X-CSRFToken': csrfToken
                 }
             })
-            console.log('Registration successful:', response.data)
+            // console.log('Registration successful:', response.data)
 
         } catch (error) {
             console.error('Error registering:', error);
@@ -59,7 +59,7 @@ const Register = () => {
     }
 
   return (
-    <>
+    <div style={{marginTop : '150px', padding : '20px'}}>
         <form action="" onSubmit={handleSubmit}>
             <input 
                 type="text"
@@ -100,7 +100,7 @@ const Register = () => {
                 Register
             </button>
         </form>
-    </>
+    </div>
   )
 }
 

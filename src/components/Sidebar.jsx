@@ -8,9 +8,6 @@ const Sidebar = () => {
         <div className="tags">
             <h3 className="tag-headling">Popular Tags</h3>
             <div className="sidebar-nav">
-                {/* {% for tag in tags %} */}
-                {/* <div className="sidebar-nav-element">#{{ tag }}</div> */}
-                {/* {% endfor %} */}
             </div>
         </div>
     </div>
