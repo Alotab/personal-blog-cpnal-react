@@ -9,6 +9,9 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Portfolio from "./components/Portfolio";
 import Profile from "./components/Profile";
+import EditorBox from "./components/EditorBox";
+import PostDetail from "./components/PostDetail";
+
 
 
 
@@ -23,7 +26,8 @@ const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="profile" element={<Profile />} />
-          {/* <Route path="logout" element={<Logout />} /> */}
+          <Route path="create-post" element={<EditorBox />} />
+          <Route path="/posts/:slug/:id" element={<PostDetail />} />
         </Route>
       </Routes>
     </Router>

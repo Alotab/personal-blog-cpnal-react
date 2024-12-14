@@ -3846,3 +3846,17 @@ button .trending-post-headline h2{
   border-radius: 10%;
   background: rgb(115, 113, 113);
 }
+.user-login-container{
+  align-items: center;
+  align-content: center;
+}
+  /* Sign up  */
+.sign-up-text {
+  padding-top: 0;
+}
+  
+.register-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

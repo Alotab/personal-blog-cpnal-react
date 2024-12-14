@@ -4,21 +4,22 @@ import React from 'react'
 import { useApiContext } from '../context/ApiProvider';
 
 // import { useDispatch, useSelector } from 'react-redux';
-
+import { PropagateLoader } from 'react-spinners';
 
 
 const Navbar = () => {
-    const { userName } = useApiContext();
+    const { userName, setUserName, setAccessToken, setRefreshToken } = useApiContext();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
     const logOut = () => {
-        // setUserName('');
-        // setAccessToken('');
-        // setRefreshToken('');
+        setUserName(null);
+        setAccessToken('');
+        setRefreshToken('');
         localStorage.clear();
-        navigate('portfolio');
+        <PropagateLoader />
+        navigate(from, { replace: true });
     };
 
   return (

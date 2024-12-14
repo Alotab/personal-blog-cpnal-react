@@ -160,7 +160,7 @@ const PostDetail = () => {
                                 <img src={post.image} alt={post.title} className="post-image" />
                                 <div className="main-post">
                                     <div className="main-post-author">
-                                        <img src={post.author.profile_picture} alt={post.author.first_name} />
+                                        <img src={post.author_info.profile_picture} alt={post.author.first_name} />
                                         <div className="author-name">
                                             <p className="author-name-link">{post.author.first_name} {post.author.last_name}</p>
                                             <p id="time-tag" className="publish">Posted on { post.publish} &middot; {post.read_time} read</p>
