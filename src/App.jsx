@@ -11,6 +11,7 @@ import Portfolio from "./components/Portfolio";
 import Profile from "./components/Profile";
 import EditorBox from "./components/EditorBox";
 import PostDetail from "./components/PostDetail";
+import PostEdit from "./components/PostEdit";
 
 
 
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="profile" element={<Profile />} />
           <Route path="create-post" element={<EditorBox />} />
           <Route path="/posts/:slug/:id" element={<PostDetail />} />
+          <Route path="/auth/posts/:slug/:id" element={<PostEdit />} />
         </Route>
       </Routes>
     </Router>
