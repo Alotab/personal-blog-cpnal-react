@@ -11,7 +11,7 @@ import getCSRFToken from '../utils/crsfToken';
 const PostEdit = () => {
     const { userID, accessToken } = useApiContext();
     const { slug, id } = useParams();
-    const csrfToken = getCSRFToken();
+    // const csrfToken = getCSRFToken();
 
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
@@ -24,7 +24,8 @@ const PostEdit = () => {
     
 
 
-
+    // checks if tags is an array, else splits a string into array: "tag1, tag2, tag3" => ["tag1", " tag2", " tag3"]
+    // trim into => ["tag1", "tag2", "tag3"]
     const tagsArray = Array.isArray(tags) ? tags : tags.split(',').map(tag => tag.trim());
 
     // Send Updated data back to the backend API
@@ -94,6 +95,7 @@ const PostEdit = () => {
         // }
     };
 
+    // sets content data from the third party Editor textarea
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
         setContent(data);
@@ -104,7 +106,7 @@ const PostEdit = () => {
         setImage(file);
     }
 
-
+    // Fetch API post data and set data to each required field for update
     useEffect(() => {
         const fetchPostDetail = async (slug, id) => {
             try {

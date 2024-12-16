@@ -51,11 +51,10 @@ const EditorBox = () => {
       if (image) {
         formData.append('image', image);
       }
-      // const data = Object.fromEntries(formData);
-      // console.log(data);
+    
       try {
 
-        const response = await axiosPrivate.post('http://127.0.0.1:8000/auth/posts/', formData, {
+        const response = await axiosPrivate.post('/posts/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data', // Adjust for JSON data if needed
             'Authorization': `JWT ${accessToken}`, 
