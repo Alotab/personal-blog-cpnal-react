@@ -30,8 +30,7 @@ const Navbar = () => {
             <div className="nav-main">
                 <div className="logo">
                     <div className="main-logo">
-                        <Link to={"/"}><img src={logo} alt="logo" /></Link>
-                            
+                        <Link to={"/"}><img src={logo} alt="logo" /></Link> 
                     </div>
                 </div>
         
@@ -59,11 +58,16 @@ const Navbar = () => {
                                 <li> <Link to={"/create-post"}>Write</Link></li>
                                 <li> <Link to={"/portfolio"}>Portfolio</Link></li>
                                 { auth.username 
-                                ?  <li><Link to={"/"} onClick={logOut}>Logout</Link></li>
+                                ?  ( 
+                                    <>
+                                        <li><Link to={"/"} onClick={logOut}>Logout</Link></li>
+                                        <li> <Link to={"/profile"}>Profile</Link></li>
+                                    </>
+                                    )
                                 :
-                                    <li><Link to={"login"}>Login</Link></li>
+                                    (<li><Link to={"login"}>Login</Link></li>)
                                 }
-                                <li> <Link to={"/profile"}>Profile</Link></li>
+                                
                             </ul>
                         </nav>
                     </div>

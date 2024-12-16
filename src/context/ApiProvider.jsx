@@ -1,5 +1,4 @@
-import { createContext, useContext, useEffect, useId, useState } from "react";
-// import { useLocation, useNavigate } from 'react-router-dom'
+import { createContext, useContext, useEffect, useState } from "react";
 
 const ApiContext = createContext(null);
 import axios from "../app/axios";
@@ -45,17 +44,16 @@ export const ApiProviders = ({ children }) => {
             })
             const userData = userResponse?.data;
             console.log(userData);
-            const userEmail = userData?.email;
             const userName = userData?.username;
             const firstName = userData?.first_name;
             const lastName  = userData?.last_name;
             const userId = userData?.id;
-            // console.log('User ID', userId);
             localStorage.setItem('username', userName);
             localStorage.setItem('first_name', firstName);
             localStorage.setItem('last_name', lastName);
             localStorage.setItem('user_id', userId);
-            localStorage.setItem('auth', userData);
+            // localStorage.setItem('auth', userData);
+            localStorage.setItem('auth', JSON.stringify(userData));
             setAuth(userData);
             setUser(true);
             setUserID(userId);
@@ -100,10 +98,16 @@ export const ApiProviders = ({ children }) => {
         const storedLastName = localStorage.getItem('last_name');
         const storedUserID = localStorage.getItem('user_id');
 
+        // Check if storedAuth exists and is a valid JSON string
         if (storedAuth) {
-            setAuth(storedAuth);
+            try {
+                const parsedAuth = JSON.parse(storedAuth);
+                setAuth(parsedAuth);  // Set the parsed auth object
+            } catch (error) {
+                console.error('Failed to parse auth from localStorage:', error);
+            }
         }
-        
+
         if (storedAccessToken) {
             setAccessToken(storedAccessToken);
             setUser(true);
@@ -128,7 +132,6 @@ export const ApiProviders = ({ children }) => {
         if (storedUserID) {
             setUserID(storedUserID);
         }
-
     }, []);
 
 

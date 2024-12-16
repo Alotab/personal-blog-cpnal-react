@@ -26,7 +26,7 @@ const Hero = () => {
               <h5>Documentation 📚</h5>
               <h5>Production 🚀</h5>
           </div>
-              <Link to={"/signup"}>
+              <Link to={"/register"}>
                   <p>Create Account</p>
               </Link>
         </div>
