@@ -10,10 +10,11 @@ const LOGIN_URL = '/jwt/create/';
 const USER_INFO_URL ='/users/me';
 
 export const ApiProviders = ({ children }) => {
+    const [auth, setAuth] = useState({});
     const [user, setUser] = useState(false);
     const [accessToken, setAccessToken] = useState('');
     const [refreshToken, setRefreshToken] = useState('');
-    const [email, setEmail] = useState('');
+    // const [email, setEmail] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [userName, setUserName] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -38,28 +39,28 @@ export const ApiProviders = ({ children }) => {
             setRefreshToken(refresh_token);
           
 
-
             // Use access token to fetch the user info
             const userResponse = await axios.get(USER_INFO_URL,{
                 headers: { 'Authorization': `JWT ${access_token}`}
             })
-            const userdataa = userResponse?.data;
-            // console.log(userdataa.id);
-            const userEmail = userdataa?.email;
-            const userName = userdataa?.username;
-            const firstName = userdataa?.first_name;
-            const lastName  = userdataa?.last_name;
-            const userId = userdataa?.id;
+            const userData = userResponse?.data;
+            console.log(userData);
+            const userEmail = userData?.email;
+            const userName = userData?.username;
+            const firstName = userData?.first_name;
+            const lastName  = userData?.last_name;
+            const userId = userData?.id;
             // console.log('User ID', userId);
             localStorage.setItem('username', userName);
             localStorage.setItem('first_name', firstName);
             localStorage.setItem('last_name', lastName);
             localStorage.setItem('user_id', userId);
+            localStorage.setItem('auth', userData);
+            setAuth(userData);
             setUser(true);
             setUserID(userId);
             setFirstName(firstName);
             setLastName(lastName);
-            setUser(userEmail);
             setUserName(userName); 
         
 
@@ -91,12 +92,18 @@ export const ApiProviders = ({ children }) => {
     };
   
     useEffect(() => {
+        const storedAuth = localStorage.getItem('auth');
         const storedAccessToken = localStorage.getItem('access_token');
         const storedRefreshToken = localStorage.getItem('refresh_token');
         const storedUsername = localStorage.getItem('username');
         const storedFirstName = localStorage.getItem('first_name');
         const storedLastName = localStorage.getItem('last_name');
         const storedUserID = localStorage.getItem('user_id');
+
+        if (storedAuth) {
+            setAuth(storedAuth);
+        }
+        
         if (storedAccessToken) {
             setAccessToken(storedAccessToken);
             setUser(true);
@@ -127,6 +134,8 @@ export const ApiProviders = ({ children }) => {
 
     return (
         <ApiContext.Provider value={{
+            auth,
+            setAuth,
             refreshToken, 
             accessToken, 
             loginAction, 

@@ -2,7 +2,7 @@
 
 export const getRealTimeDateFormat = (item) => {
     const now = new Date();
-    const publishDate = new Date(item.publish);
+    const publishDate = new Date(item.created_at);
     const differenceInMilliseconds = now - publishDate;
   
     const seconds = Math.floor(differenceInMilliseconds / 1000);

@@ -8,13 +8,14 @@ import { PropagateLoader } from 'react-spinners';
 
 
 const Navbar = () => {
-    const { userName, setUserName, setAccessToken, setRefreshToken } = useApiContext();
+    const { setAccessToken, setRefreshToken, setAuth, auth } = useApiContext();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
     const logOut = () => {
-        setUserName(null);
+        setAuth({});
+        // setUserName(null);
         setAccessToken('');
         setRefreshToken('');
         localStorage.clear();
@@ -57,7 +58,7 @@ const Navbar = () => {
                                 
                                 <li> <Link to={"/create-post"}>Write</Link></li>
                                 <li> <Link to={"/portfolio"}>Portfolio</Link></li>
-                                {userName 
+                                { auth.username 
                                 ?  <li><Link to={"/"} onClick={logOut}>Logout</Link></li>
                                 :
                                     <li><Link to={"login"}>Login</Link></li>

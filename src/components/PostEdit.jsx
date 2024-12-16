@@ -9,7 +9,7 @@ import getCSRFToken from '../utils/crsfToken';
 
 
 const PostEdit = () => {
-    const { userID, accessToken } = useApiContext();
+    const { auth, userID, accessToken } = useApiContext();
     const { slug, id } = useParams();
     // const csrfToken = getCSRFToken();
 
@@ -38,7 +38,7 @@ const PostEdit = () => {
         formData.append('tags', tagsArray.join(','));
         formData.append('status', status); // Append status field
         formData.append('snippet', snippet);
-        formData.append('author', userID);
+        formData.append('author', auth.id);
         if (image) {
           formData.append('image', image);
         }

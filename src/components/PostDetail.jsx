@@ -10,7 +10,7 @@ import getCSRFToken from '../utils/crsfToken';
 const PostDetail = () => {
     const csrfToken = getCSRFToken();
 
-    const { user, accessToken, userID } = useApiContext();
+    const { accessToken, auth } = useApiContext();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -197,7 +197,7 @@ const PostDetail = () => {
 
     // Extract tagsArray after the post state is updated
     const tagsArray = post ? post.tags.split(',').map(tag => tag.trim()) : [];
-    
+
     return (
         <>
             { post 
@@ -213,7 +213,7 @@ const PostDetail = () => {
                                             <p className="author-name-link">{post.author.first_name} {post.author.last_name}</p>
                                             <p id="time-tag" className="publish">Posted on { post.publish} &middot; {post.read_time} read</p>
                                         </div>
-                                        { userID == post.author ? 
+                                        { auth.id == post.author ? 
                                             <>
                                                 <div className="post-edit">
                                                     <Link to={`/auth/posts/${post.slug}/${post.id}`}>Update</Link>
