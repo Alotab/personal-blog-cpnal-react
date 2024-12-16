@@ -4,7 +4,7 @@ import { useApiContext } from '../context/ApiProvider';
 
 
 const Profile = () => {
-    const { firstName, lastName, userName, userID } = useApiContext();
+    const { firstName, userName, userID, accessToken } = useApiContext();
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -26,7 +26,7 @@ const Profile = () => {
             {userName ? 
                 <> 
                 <h1>Welcome, {userName}</h1>
-                <h2>FirstName: {firstName}!</h2>
+                <h2>FirstName: {accessToken}!</h2>
                 <p>User ID: {userID}</p>
                 </>
             : 

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { axiosPrivate } from '../app/axios';
-
 import { getRealTimeDateFormat } from '../utils/usePostTimeLine';
+import getCSRFToken from '../utils/crsfToken';
 
-const API_URL_IMAGE='http://127.0.0.1:8000/'
+
+// const API_URL_IMAGE='http://127.0.0.1:8000/'
+
 const Hero = () => {
   const [posts, setPosts] = useState([]);
 

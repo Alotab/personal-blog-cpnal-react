@@ -7,37 +7,37 @@ import 'ckeditor5/ckeditor5.css';
 import api from '../tokenRefresh';
 import ApiContext, { useApiContext } from '../context/ApiProvider';
 import axios from 'axios';
+import { axiosPrivate } from '../app/axios';
 // import axios from '../app/axios';
+
+axiosPrivate
 
 const EditorBox = () => {
     const { firstName, lastName, userID, accessToken } = useApiContext();
     const editorRef = useRef(null);
+
+    const [loading, setLoading] = useState(true);
+    const [content, setContent] = useState('');
+    const [title, setTitle] = useState('');
+    const [tags, setTags] = useState([]);
+    const [status, setStatus] = useState('');
+    const [image, setImage] = useState(null);
+    const [snippet, setSnippet] = useState('');
+    
+    
 
     const log = () => {
       if (editorRef.current) {
         console.log(editorRef.current.getContent());
       }
     };
-
-  
-    const [loading, setLoading] = useState(true);
-    const [content, setContent] = useState('');
-    const [title, setTitle] = useState('');
-    const [tags, setTags] = useState([]);
-    const [status, setStatus] = useState('');
-    const [image, setImage] = useState(null)
-    const [snippet, setSnippet] = useState('')
-
     
-
     const handleEditorChange = (event, editor) => {
       const data = editor.getData();
       setContent(data);
     }
 
-
     const tagsArray = Array.isArray(tags) ? tags : tags.split(',').map(tag => tag.trim());
-    const Author = firstName + " " + lastName;
 
     const handleSubmit = async (e) => {
       e.preventDefault()
@@ -51,11 +51,11 @@ const EditorBox = () => {
       if (image) {
         formData.append('image', image);
       }
-      const data = Object.fromEntries(formData);
+      // const data = Object.fromEntries(formData);
       // console.log(data);
       try {
 
-        const response = await axios.post('http://127.0.0.1:8000/posts/', formData, {
+        const response = await axiosPrivate.post('http://127.0.0.1:8000/auth/posts/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data', // Adjust for JSON data if needed
             'Authorization': `JWT ${accessToken}`, 
@@ -252,7 +252,6 @@ const EditorBox = () => {
 
 
         </form>
-
       </div>
     );
 };

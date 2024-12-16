@@ -1,22 +1,33 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { useApiContext } from '../context/ApiProvider';
+import getCSRFToken from '../utils/crsfToken';
 
 
 
 const PostDetail = () => {
+    const csrfToken = getCSRFToken();
+
+    const { user, accessToken, userID } = useApiContext();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+    const buttonRef = useRef(null);
+    const sociaMediaRefs = useRef([]);
+    const socialButtonDivRef = useRef(null);
+
     const [post, setPost] = useState(null);
     const [socialLinks, setSocialLinks] = useState(false)
     const { slug, id } = useParams();
-    const socialButtonDivRef = useRef(null);
-    const buttonRef = useRef(null);
-    const sociaMediaRefs = useRef([]);
+    
     const [isActive, setIsActive] = useState(false);
     const [mouseOverTxt, setMouseOverTxt] = useState(false);
     const [mouseOverComment, setMouseOverComment] = useState(false);
     const [mouseOverBookmark, setMouseOverBookmark] = useState(false);
     const [mouseOverLike, setMouseOverLike] = useState(false);
-
 
 
     // Show text when mouse over share icon
@@ -125,6 +136,41 @@ const PostDetail = () => {
         }
     };
 
+   // API for deleting a POST
+    const onHandleDelete = async (slug, pk) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+        if (!confirmDelete) return;
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/auth/posts/${slug}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `JWT ${accessToken}`, 
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,  // Include the CSRF token here
+                },
+                credentials: 'include',  // Ensure cookies (including CSRF token) are sent
+            });
+
+            if(response.ok) {
+                alert('Post deleted successfully');
+
+                // Redirect to homepage after successful deletion
+                navigate(from, { replace: true });
+            navigate(from, { replace: true });
+            } else {
+                throw new Error('Failed to delete post');
+            }
+        } catch (error) {
+            console.log('Failed to delete the post');
+        }
+
+    };
+
+    // API for updating a POST
+    const onHandleUpdate = async (slug, pk) => {
+
+    }
+
     // Add event listener on mount and clean it up on unmount
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
@@ -138,7 +184,8 @@ const PostDetail = () => {
     useEffect(() => {
         const fetchPostDetail = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/posts/${slug}/${id}/`);
+                const response = await axios.get(`http://127.0.0.1:8000/auth/posts/${slug}/${id}`);
+                // console.log(response.data);
                 setPost(response.data)
             } catch (error) {
                 console.error('Error fetching post details:', error);
@@ -150,6 +197,7 @@ const PostDetail = () => {
 
     // Extract tagsArray after the post state is updated
     const tagsArray = post ? post.tags.split(',').map(tag => tag.trim()) : [];
+    
     return (
         <>
             { post 
@@ -165,14 +213,19 @@ const PostDetail = () => {
                                             <p className="author-name-link">{post.author.first_name} {post.author.last_name}</p>
                                             <p id="time-tag" className="publish">Posted on { post.publish} &middot; {post.read_time} read</p>
                                         </div>
-                                        {/* {% if request.user.is_authenticated %} */}
-                                        <div className="post-edit">
-                                            {/* <a href="{% url 'blog:post-update' post.slug post.pk %}">Update</a> */}
-                                        </div>
-                                        <div className="post-delete">
-                                            {/* <a href="{% url 'blog:post-delete' post.slug post.pk %}">Delete</a> */}
-                                        </div>
-                                        {/* {% endif %} */}
+                                        { userID == post.author ? 
+                                            <>
+                                                <div className="post-edit">
+                                                    <Link to={`/auth/posts/${post.slug}/${post.id}`}>Update</Link>
+                                                    {/* <a href="">Update</a> */}
+                                                </div>
+                                                <div className="post-delete" onClick={() => onHandleDelete(post.slug, post.id)}>
+                                                    <Link>Delete</Link>
+                                                </div>
+                                            </>
+                                         : 
+                                            <></>
+                                        }
                                     </div>
                                     <div className="main-post-headline">
                                         <h2>{post.title}</h2>

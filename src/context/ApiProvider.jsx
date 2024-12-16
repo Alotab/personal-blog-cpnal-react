@@ -10,7 +10,7 @@ const LOGIN_URL = '/jwt/create/';
 const USER_INFO_URL ='/users/me';
 
 export const ApiProviders = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(false);
     const [accessToken, setAccessToken] = useState('');
     const [refreshToken, setRefreshToken] = useState('');
     const [email, setEmail] = useState('');
@@ -50,11 +50,12 @@ export const ApiProviders = ({ children }) => {
             const firstName = userdataa?.first_name;
             const lastName  = userdataa?.last_name;
             const userId = userdataa?.id;
-            console.log('User ID', userId);
+            // console.log('User ID', userId);
             localStorage.setItem('username', userName);
             localStorage.setItem('first_name', firstName);
             localStorage.setItem('last_name', lastName);
             localStorage.setItem('user_id', userId);
+            setUser(true);
             setUserID(userId);
             setFirstName(firstName);
             setLastName(lastName);
@@ -81,6 +82,7 @@ export const ApiProviders = ({ children }) => {
     }
 
     const logOut = (navigate, from) => {
+        setUser(false);
         setUserName(null);
         setAccessToken('');
         setRefreshToken('');
@@ -97,6 +99,7 @@ export const ApiProviders = ({ children }) => {
         const storedUserID = localStorage.getItem('user_id');
         if (storedAccessToken) {
             setAccessToken(storedAccessToken);
+            setUser(true);
         }
 
         if (storedRefreshToken) {
@@ -105,6 +108,7 @@ export const ApiProviders = ({ children }) => {
 
         if(storedUsername) {
             setUserName(storedUsername);
+            setUser(true);
         }
 
         if (storedFirstName) {
@@ -135,7 +139,8 @@ export const ApiProviders = ({ children }) => {
             logOut,
             firstName,
             lastName,
-            userID 
+            userID,
+            user
         }}>
             {children}
         </ApiContext.Provider>
