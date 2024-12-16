@@ -12,11 +12,13 @@ import Profile from "./components/Profile";
 import EditorBox from "./components/EditorBox";
 import PostDetail from "./components/PostDetail";
 import PostEdit from "./components/PostEdit";
-
-
+import PageNotFound from "./components/PageNotFound";
+import RequireAuth from "./components/RequireAuth";
+import NotAuthorized from "./components/NotAuthorized";
 
 
 const App = () => {
+
   return (
     <Router>
       <Routes>
@@ -24,13 +26,25 @@ const App = () => {
           <Route index element={<Homepage />} />
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
-          <Route path="register" element={<Register />} />
+          {/* <Route path="register" element={<Register />} /> */}
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="create-post" element={<EditorBox />} />
+          {/* <Route path="create-post" element={<EditorBox />} /> */}
           <Route path="/posts/:slug/:id" element={<PostDetail />} />
           <Route path="/auth/posts/:slug/:id" element={<PostEdit />} />
+          <Route path="/page-not-authorzed" element={<NotAuthorized />}/>
+
+          {/* Protected Routes  */}
+          <Route path="create-post" 
+            element={
+              <RequireAuth>
+                <EditorBox />
+              </RequireAuth>
+            } 
+          />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
+
       </Routes>
     </Router>
   );

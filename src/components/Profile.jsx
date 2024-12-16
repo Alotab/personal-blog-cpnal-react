@@ -4,30 +4,19 @@ import { useApiContext } from '../context/ApiProvider';
 
 
 const Profile = () => {
-    const { firstName, userName, userID, accessToken } = useApiContext();
+    const { accessToken, auth } = useApiContext();
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    
-
-    // console.log('Have accestoken in Profile:', accessToken);
-
-    // useEffect(() => {
-    //     console.log('Updated PROFILE auth:', username);  // Log the updated auth state
-    // }, [username]); 
-
-    // Loading or error handling
-    // if (loading) return <p>Loading...</p>;
-    // if (error) return <p>{error}</p>;
 
     return (
         <div style={{ marginTop: '150px', padding: '20px' }}>
-            {userName ? 
+            {auth.username ? 
                 <> 
-                <h1>Welcome, {userName}</h1>
+                <h1>Welcome, {auth.first_name}</h1>
                 <h2>FirstName: {accessToken}!</h2>
-                <p>User ID: {userID}</p>
+                <p>User ID: {auth.email}</p>
                 </>
             : 
                 <>

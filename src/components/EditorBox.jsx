@@ -13,7 +13,7 @@ import { axiosPrivate } from '../app/axios';
 axiosPrivate
 
 const EditorBox = () => {
-    const { firstName, lastName, userID, accessToken } = useApiContext();
+    const { auth, accessToken } = useApiContext();
     const editorRef = useRef(null);
 
     const [loading, setLoading] = useState(true);
@@ -47,15 +47,14 @@ const EditorBox = () => {
       formData.append('tags', tagsArray.join(','));
       formData.append('status', status); // Append status field
       formData.append('snippet', snippet);
-      formData.append('author', userID);
+      formData.append('author', auth.id);
       if (image) {
         formData.append('image', image);
       }
-      // const data = Object.fromEntries(formData);
-      // console.log(data);
+    
       try {
 
-        const response = await axiosPrivate.post('http://127.0.0.1:8000/auth/posts/', formData, {
+        const response = await axiosPrivate.post('/posts/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data', // Adjust for JSON data if needed
             'Authorization': `JWT ${accessToken}`, 
