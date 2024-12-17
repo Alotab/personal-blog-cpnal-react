@@ -17,7 +17,7 @@ const Footer = () => {
                 <li><Link to={"/portfolio"}>Contact</Link></li>
             </ul>
             <div className="signarture">
-                <p>@2023</p>
+                <p>@2024</p>
                 <i className="ri-heart-fill footer-heart-icon"></i>
             </div>
         </footer>
