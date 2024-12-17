@@ -26,7 +26,6 @@ const Navbar = () => {
   return (
     <>
         <header>
-            <div className="scroll-tracker"></div>
             <div className="nav-main">
                 <div className="logo">
                     <div className="main-logo">
@@ -54,7 +53,6 @@ const Navbar = () => {
                     <div className="subheader" id="nav-menu">
                         <nav>
                             <ul id="primary-navigation" data-visible="false"  className="primary-navigation">
-                                
                                 <li> <Link to={"/create-post"}>Write</Link></li>
                                 <li> <Link to={"/portfolio"}>Portfolio</Link></li>
                                 { auth.username 

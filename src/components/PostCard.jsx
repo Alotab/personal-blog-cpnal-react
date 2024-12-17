@@ -4,7 +4,8 @@ import axios from 'axios';
 import { axiosPrivate } from '../app/axios';
 import { getRealTimeDateFormat } from '../utils/usePostTimeLine';
 import getCSRFToken from '../utils/crsfToken';
-
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { MdSecurityUpdateGood } from 'react-icons/md';
 
 // const API_URL_IMAGE='http://127.0.0.1:8000/'
 
@@ -30,10 +31,15 @@ const Hero = () => {
     return (
         <>
             <div className="middle-colume-post infinite-container" id="middle-colume-post">
+              <InfiniteScroll 
+                dataLength={posts.length}
+                next={() => setPage(page + 1)}
+              > 
+
                 {posts.map((item, idx) => {
                     return (
                       <div className="post infinite-item ck-content" key={idx}>
-                         <Link to={`/posts/${item.slug}/${item.id}`} key={item.id}> 
+                        <Link to={`/posts/${item.slug}/${item.id}`} key={item.id}> 
                             <div className="author-profile">
                                 <div className="author-image">
                                     <Link to={"/portfolio"}><img src={item?.author_info?.profile_picture} alt={item?.author_info?.full_name} /></Link>
@@ -44,13 +50,21 @@ const Hero = () => {
                                 </div>
                                 
                             </div>
-                            <div className="post-header">
+                            <div className="post-header-title">
                                 <h4>{item?.title}</h4>
                             </div>
+                            <div class="post-tags">
+                              <a class="post-tag-chrome" href="#"><span></span>tags</a>
+                              <a class="post-tag-chrome" href="#"><span></span>python</a>
+
+                            </div>
                         </Link>
-                    </div>
+                      </div>
                     )
                 })}
+                    
+
+              </InfiniteScroll>
             </div>
         </>
     );

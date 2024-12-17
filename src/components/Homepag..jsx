@@ -10,9 +10,9 @@ const Homepage = () => {
   return (
     <div className='main-content'>
         <Navbar />
-        <Sidebar />
+        {/* <Sidebar /> */}
         <Hero />
-        <RightSideBar />
+        {/* <RightSideBar /> */}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import homeImge from "../assets/images/custome_home.avif"
 import PostCard from './PostCard'
@@ -11,7 +11,8 @@ const Hero = () => {
 
 
   return (
-    <div className='middle-colume' id="post-container">
+    <div className='main-content'>
+      <div className='middle-colume' id="post-container">
         <div className="community-post">
           <h2 className="community-name">DevWithCode</h2>
           <div className="community-post-headline">
@@ -33,7 +34,9 @@ const Hero = () => {
         <PostCard />
 
 
+      </div>
     </div>
+    
   )
 }
 
