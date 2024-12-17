@@ -1186,6 +1186,7 @@ footer ul li{
   background-color: #081b29;
   margin-left: 10rem;
   margin-right: 10rem;
+  /* height: 180vh; */   
 }
 .portfolio-title h2{
   font-family: 'Uncial Antiqua', cursive;
@@ -1202,21 +1203,21 @@ footer ul li{
   justify-content: center;
   text-align: center;
   align-items: center;
-  /* display: flex; */
-  height: 80vh;
-  /* justify-content: space-between; */
-  align-items: center;
-  /* padding: 0% 5%; */
+  overflow: hidden;
 }
+
 .my-profile-introduction{
   padding-left: 2rem;
+  height: 600px;
   max-width: 600px;
+ 
+
 }
 .my-profile-introduction h1{
   font-size: 56px;
   font-weight: 700;
   color: #fff;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 .my-profile-introduction p{
   font-size: 16px;
@@ -1229,11 +1230,11 @@ footer ul li{
   justify-content: center;
   width: 170px;
   align-items: center;
-  margin-top: 5rem;
-  padding-bottom: 3rem;
+  /* margin-top: 5rem; */
+  /* padding-bottom: 3rem; */
   width: 100%;
   /* background-color: rebeccapurple; */
-  overflow: hidden;
+  /* overflow: hidden; */
  
 }
 .my-social-link-btn a{
@@ -1701,9 +1702,9 @@ footer ul li{
 /*==================== DESKTOP ==================================*/
 @media (min-width: 1025px) and (max-width: 1280px) {
   /* Styles for desktops */
-  body {
+  /* body {
     background-color: red;
-  }
+  } */
 
   .logo{
     gap: 1.5em;
@@ -1719,9 +1720,7 @@ footer ul li{
   .toggle-menu .nav__close  i{
     display: none !important;
   }
-  .middle-colume{
-    /* margin-top: 6rem; */
-  }
+
   .community-post{
     margin-top: 65px;
   }
@@ -1749,22 +1748,9 @@ footer ul li{
     object-fit: cover;
   }
   .main-post{
-    /* margin: 0rem 1.5rem; */
-
     margin: 0 1rem; 
   }
-  /* sidebar-column - detail-page */
-  .sidebar-column{
-    width: 100%;
-    margin-top: 3.5rem;
-    /* margin-right: 10px; */
 
-    padding: 0;
-  }
-  /* new update */
-  .related-side-post{
-    width: 100%;
-  }
 
   /*--------------- portfolio section ------------------*/
    .portfolio-title{
@@ -1837,11 +1823,25 @@ footer ul li{
     width: 30%;
     /* display: block !important; */
   }
+
+
+  /* ------------------- FOOTER -------------------- */
+  footer ul li a{
+    font-size: 1.5rem;
+  }
+  
+  .website-slogan {
+    font-size: 14px;
+    margin-bottom: 0.2rem;
+  }
 }
 
 /* ================ SMALL SCREENS -- laptops ========================*/
 @media (min-width: 769px) and (max-width: 1024px) {
-
+  body {
+    font-size: 16px;
+    /* background-color: yellow; */
+  }
   .subheader{
     padding: 0;
   }
@@ -1880,9 +1880,6 @@ footer ul li{
     margin-right: 1rem;
   } */
 
-  /* main content  on Small screens, laptops  */
- 
-
   /* middle content  on Small screens, laptops  */
   .middle-colume{
     margin-top: 6rem;
@@ -1890,11 +1887,9 @@ footer ul li{
   .community-post{
     border-radius: 0.5rem;
   }
- 
   .community-post-headline{
     padding: 15px 15px;
   }
-
   .community-post-headline h4 {
     font-size: 15px;
  
@@ -1903,7 +1898,6 @@ footer ul li{
     font-size: 16px;
     line-height: 1.2;
   }
-
   .community-tags h5{
     font-size: 12px;
     font-family: 'Courier New', Courier, monospace;
@@ -1976,8 +1970,15 @@ footer ul li{
   .my-profile-snippet{
     overflow: hidden;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 6rem;
+    column-gap: 1px;
     row-gap: 0;
+  }
+  .my-profile-introduction h1{
+    font-size: 35px;
+  }
+ 
+  .my-social-link-btn {
+    margin-bottom: 1rem;
   }
   .my-profile-image img{
     width: 100%;
@@ -1996,17 +1997,19 @@ footer ul li{
     margin-bottom: 4rem;
   }
 
-
-  /* ------------------ login ---------------------*/
- 
-
-
-
-
-
   /*----------- show-permalink-message -------------*/
   .permalink-message{
     right: -230px;
+  }
+
+  /* ------------------- FOOTER -------------------- */
+  footer ul li a{
+    font-size: 1.5rem;
+  }
+
+  .website-slogan {
+    font-size: 14px;
+    margin-bottom: 0.2rem;
   }
 
 }
@@ -2014,9 +2017,10 @@ footer ul li{
 /*========================== MINI IPADS / SOME LARGE MOBILE DEVICES =========================*/
 @media (min-width: 481px) and  (max-width: 768px) {
   
-  /* body {
-    background-color: green;
-  } */
+  body {
+    font-size: 15px;
+    /* background-color: green; */
+  }
 
   .primary-navigation{
     inset: 0 0 0 10%;
@@ -2247,13 +2251,24 @@ footer ul li{
   .share-link.share-scroll{
     height: 40px;
   }
+
+  /* ------------------- FOOTER -------------------- */
+   footer ul li a{
+    font-size: 1.4rem;
+  }
+
+  .website-slogan {
+    font-size: 13px;
+    margin-bottom: 0.2rem;
+  }
 }
 
 /*================ mobile devices ==============*/
 @media (min-width: 320px) and (max-width: 480px) {
-  /* body{
+  body{
+    font-size: 14px;
     background-color: violet !important;
-  } */
+  }
 
   .search input {
       display: none! important;

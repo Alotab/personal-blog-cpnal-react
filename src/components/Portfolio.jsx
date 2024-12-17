@@ -60,7 +60,6 @@ const Portfolio = () => {
                     </div>
                 </div>
         
-
                 <div className="my-profile-image">
                     <img src={image}  alt="portfolio image" />
                 </div>
