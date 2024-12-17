@@ -102,7 +102,7 @@ const Login = () => {
     // </div>
 
 
-    <div className='user-login-container'>
+    <div className='signup-wrapper'>
         <h2 className="sign-up-text" style={{marginTop : '150px', padding : '20px'}}>{isRegistration ? 'Sign Up' : 'Login'}</h2>
         <p>{isRegistration ? 'Create an account!' : 'Sign in to your account!'}</p>
         {errMsg && (
