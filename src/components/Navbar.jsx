@@ -1,17 +1,26 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo2.svg';
-import React from 'react'
+import React, { useState } from 'react'
 import { useApiContext } from '../context/ApiProvider';
 
 // import { useDispatch, useSelector } from 'react-redux';
 import { PropagateLoader } from 'react-spinners';
 
+import Hamburger from 'hamburger-react'
 
 const Navbar = () => {
     const { setAccessToken, setRefreshToken, setAuth, auth } = useApiContext();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    }
+
+    
 
     const logOut = () => {
         setAuth({});
@@ -33,6 +42,7 @@ const Navbar = () => {
                     </div>
                 </div>
         
+                {/* Menu bar Icon  */}
                 <button className="mobile-nav-toggle" 
                     aria-controls="primary-navigation" aria-expanded="false">
                     <span className="sr-only">
@@ -51,19 +61,30 @@ const Navbar = () => {
                 {/* <!-- Navigation links --> */}
                 <div className="nav-links-menu">
                     <div className="subheader" id="nav-menu">
-                        <nav>
-                            <ul id="primary-navigation" data-visible="false"  className="primary-navigation">
-                                <li> <Link to={"/create-post"}>Write</Link></li>
-                                <li> <Link to={"/portfolio"}>Portfolio</Link></li>
+                        <div className="hamburger-menu">
+                            <Hamburger 
+                                toggled={isOpen} 
+                                toggle={toggleMenu}
+                                size={25}
+                                className='hamburger-menu'
+                            />
+                        </div>
+                        
+                        <nav className={`primary-navigation ${isOpen ? 'open': ''}`} data-visible={isOpen ? 'true' : 'false'}>
+                        
+                            {/* className="primary-navigation" */}
+                            <ul id="primary-navigation"> 
+                                <li> <Link to={"/create-post"} className='nav-element'>Write</Link></li>
+                                <li> <Link to={"/portfolio"} className='nav-element'>Portfolio</Link></li>
                                 { auth.username 
                                 ?  ( 
                                     <>
-                                        <li><Link to={"/"} onClick={logOut}>Logout</Link></li>
-                                        <li> <Link to={"/profile"}>Profile</Link></li>
+                                        <li><Link to={"/"} onClick={logOut} className='nav-element'>Logout</Link></li>
+                                        <li> <Link to={"/profile"} className='nav-element'>Profile</Link></li>
                                     </>
                                     )
                                 :
-                                    (<li><Link to={"login"}>Login</Link></li>)
+                                    (<li><Link to={"login"} className='nav-element'>Login</Link></li>)
                                 }
                                 
                             </ul>

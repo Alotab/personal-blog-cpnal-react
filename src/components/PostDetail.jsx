@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useApiContext } from '../context/ApiProvider';
 import getCSRFToken from '../utils/crsfToken';
+import { formatDate } from '../utils/usePostTimeLine';
+import PageNotFound from './PageNotFound';
 
 
 
@@ -20,6 +22,7 @@ const PostDetail = () => {
     const socialButtonDivRef = useRef(null);
 
     const [post, setPost] = useState(null);
+    const [errorMsg, setErrorMsg] = useState('');
     const [socialLinks, setSocialLinks] = useState(false)
     const { slug, id } = useParams();
     
@@ -185,21 +188,29 @@ const PostDetail = () => {
         const fetchPostDetail = async () => {
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/auth/posts/${slug}/${id}`);
-                // console.log(response.data);
                 setPost(response.data)
             } catch (error) {
+                setErrorMsg('Post not found');
                 console.error('Error fetching post details:', error);
             }
         }
         fetchPostDetail();
     },[slug, id]);
 
+    if (errorMsg) {
+        setErrorMsg('');
+        // If there's an error, render the PageNotFound component or an error message
+        return <PageNotFound />
+    }
+
 
     // Extract tagsArray after the post state is updated
     const tagsArray = post ? post.tags.split(',').map(tag => tag.trim()) : [];
-
+    // console.log(post);
     return (
+       
         <>
+        
             { post 
                 ?   ( 
                     <div className="main-detail-post">
@@ -211,7 +222,7 @@ const PostDetail = () => {
                                         <img src={post.author_info.profile_picture} alt={post.author.first_name} />
                                         <div className="author-name">
                                             <p className="author-name-link">{post.author.first_name} {post.author.last_name}</p>
-                                            <p id="time-tag" className="publish">Posted on { post.publish} &middot; {post.read_time} read</p>
+                                            <p id="time-tag" className="publish">Posted on {formatDate(post.publish)} &middot; {post.read_time} read</p>
                                         </div>
                                         { auth.id == post.author ? 
                                             <>

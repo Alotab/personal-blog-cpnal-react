@@ -1,4 +1,11 @@
+import { format } from "date-fns";
 
+
+export const formatDate = (dateString) => {
+  const date = new Date(dateString);   // Convert the string into a date object
+  return format(date, 'MMM dd');  // format it as 'Dec 17
+
+}
 
 export const getRealTimeDateFormat = (item) => {
     const now = new Date();
