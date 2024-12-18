@@ -28,99 +28,58 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         setIsAuthenticating(true);
-        loginAction(usernames, password, navigate, from);
 
-        if (isRegistration) {
-            setLoading(true);
-
-            // setTimeout(() => {
-            //     try {
-            //         loginAction(usernames, password, navigate, from);
-    
-            //     } catch(err){
-            //         setErrMsg('Invadlid Credentials');
-            //     } finally {
-            //         setLoading(false);
-            //     }
-            // }, 3000);
-        }else {
-            await logOut(navigate, from);
+        try {
+            loginAction(usernames, password, navigate, from);
+        } catch (error) {
+            console.log(errMsg);
         }
-     
+        
 
+        
+        // }else {
+        //     await logOut(navigate, from);
+        // }
     };
 
    
     
-  return (
-    // <div className='wrapper' style={{marginTop : '150px', padding : '20px'}}>
-    //     {errMsg && <p style={{ color: 'red' }}>{errMsg}</p>}
+  return ( 
+    <div className="signin-wrapper">
+        <div className='centers'>
+            <h1>Login</h1>
+            {/* <h2 className="sign-up-text" >{isRegistration ? 'Sign Up' : 'Login'}</h2> */}
+            {/* <p>{isRegistration ? 'Create an account!' : 'Sign in to your account!'}</p> */}
+            {errMsg && (
+                <p>❌ {}</p>
+            )}
+            <form action="" onSubmit={handleSubmit}>
+                <div className="txt_field">
+                    <span></span>
+                    <input value={usernames} onChange={(e) => { setUsernames(e.target.value) }}  required/>
+                    <label htmlFor="">Username</label>
+                </div>
+            
+                <div className="txt_field">
+                    <span></span>
+                    <input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" required/>
+                    <label htmlFor="">Password</label>
+                </div>
+                <div className="pass">Forgot Password?</div>
+                <input type="submit" value="Submit" />
+                
+                {/* <button ><p>{isAuthenticating ? 'Authenticating...' : 'Submit'}</p></button> */}
+                <div className="signup_link">
+                    Not a member? <a href={"register"}>Signup</a>
+                </div>
+            </form>
+       
 
-    //     {loading ? 
-    //        (<PropagateLoader 
-    //            color={color}
-    //            loading={loading}
-    //            cssOverride={override}
-    //            size={150}
-    //            aria-label="Loading Spinner"
-    //            data-testid="loader"
-    //        />)
-    //        :
-    //         (
-    //             <form action="" onSubmit={handleSubmit}>
-    //                 <label htmlFor="username">Username:</label>
-    //                 <input 
-    //                     type="text"
-    //                     value={usernames}
-    //                     autoComplete='off'
-    //                     onChange={(e) => setUsernames(e.target.value)}
-    //                     placeholder='Username'
-    //                     required
-    //                 />
-        
-    //                 <label htmlFor="password">Password:</label>
-    //                 <input 
-    //                     type="text" 
-    //                     value={password}
-    //                     autoComplete='off'
-    //                     onChange={(e) => setPassword(e.target.value)}
-    //                     placeholder='Password'
-    //                     required
-    //                 />
-        
-    //                 <button type="submit" disabled={!usernames || !password}>
-    //                     Login
-    //                 </button>       
-    //             </form>
-    //         )
-
-    //     }
-
-      
-    // </div>
-
-
-    <div className='user-login-container'>
-        <h2 className="sign-up-text" style={{marginTop : '150px', padding : '20px'}}>{isRegistration ? 'Sign Up' : 'Login'}</h2>
-        <p>{isRegistration ? 'Create an account!' : 'Sign in to your account!'}</p>
-        {errMsg && (
-            <p>❌ {}</p>
-        )}
-        <form action="" onSubmit={handleSubmit}>
-            <input value={usernames} onChange={(e) => { setUsernames(e.target.value) }} placeholder="Username" />
-            <input value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="********" type="password" />
-            <button ><p>{isAuthenticating ? 'Authenticating...' : 'Submit'}</p></button>
-
-        </form>
-        {/* <input value={usernames} onChange={(e) => { setUsernames(e.target.value) }} placeholder="Username" />
-        <input value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="********" type="password" />
-        <button onClick={handleSubmit}><p>{isAuthenticating ? 'Authenticating...' : 'Submit'}</p></button> */}
-        {/* <hr /> */}
-        <div className="register-content" style={{marginTop : '10px'}}>
-            <p>{isRegistration ? 'Already have an account?' : 'Don\'t have an account?'}</p>
-            <button onClick={() => { setIsRegistration(!isRegistration) }}><p>{isRegistration ? 'Sign in' : 'Sign up'}</p></button>
+            {/* <div className="register-content" style={{marginTop : '10px'}}>
+                <p>{isRegistration ? 'Already have an account?' : 'Don\'t have an account?'}</p>
+                <button onClick={() => { setIsRegistration(!isRegistration) }}><p>{isRegistration ? 'Sign in' : 'Sign up'}</p></button>
+            </div> */}
         </div>
     </div>
   );
