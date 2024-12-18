@@ -1,18 +1,19 @@
 
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useApiContext } from '../context/ApiProvider';
-
 import { PropagateLoader } from 'react-spinners';
 
-const override ={
-    display: "block",
-    margin: "0 auto",
-    borderColor: "red",
-  };
+
+
+// const override ={
+//     display: "block",
+//     margin: "0 auto",
+//     borderColor: "red",
+//   };
 
 const Login = () => {
-    const {logOut, loginAction, errMsg, setErrMsg } = useApiContext();
+    const { loginAction, errMsg, setErrMsg } = useApiContext();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,8 +24,8 @@ const Login = () => {
     const [isAuthenticating, setIsAuthenticating] = useState(false);
     const [isRegistration, setIsRegistration] = useState(false)
 
-    let [loading, setLoading] = useState(false);
-    let [color, setColor] = useState("#654ee6");
+    // let [loading, setLoading] = useState(false);
+    // let [color, setColor] = useState("#654ee6");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,7 +53,7 @@ const Login = () => {
             {/* <h2 className="sign-up-text" >{isRegistration ? 'Sign Up' : 'Login'}</h2> */}
             {/* <p>{isRegistration ? 'Create an account!' : 'Sign in to your account!'}</p> */}
             {errMsg && (
-                <p>❌ {}</p>
+                <p>❌ {errMsg}</p>
             )}
             <form action="" onSubmit={handleSubmit}>
                 <div className="txt_field">
@@ -71,7 +72,7 @@ const Login = () => {
                 
                 {/* <button ><p>{isAuthenticating ? 'Authenticating...' : 'Submit'}</p></button> */}
                 <div className="signup_link">
-                    Not a member? <a href={"register"}>Signup</a>
+                    Not a member? <Link to={"/register"}>Signup</Link>
                 </div>
             </form>
        

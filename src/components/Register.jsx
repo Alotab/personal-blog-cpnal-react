@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import api from '../tokenRefresh';
 import { useApiContext } from '../context/ApiProvider';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 
 const Register = () => {
@@ -11,8 +12,6 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-
-    
 
 
     useEffect(() => {
@@ -30,8 +29,6 @@ const Register = () => {
         userData.append('password', password)
         userData.append('email', email);
        
- 
-
         try {
             const response = await api.post('/auth/users/', userData, {
                 headers: {
@@ -47,12 +44,12 @@ const Register = () => {
             };
             
         } catch (error) {
-            if (!err?.response) {
+            if (!error?.response) {
                 // No response from server
                 setErrMsg('No Server Response');
             } else {
                 // Handle specific errors based on status code
-                switch (err.response.status) {
+                switch (error.response.status) {
                     case 400:
                         setErrMsg('Missing required fields or invalid input format');
                         break;
@@ -87,7 +84,7 @@ const Register = () => {
         <div className='centers'>
             <h1>Register</h1>
             {errMsg && (
-                <p>❌ {}</p>
+                <p>❌ {errMsg}</p>
             )}
             <form action="" onSubmit={handleSubmit}>
                 <div className="txt_field">
@@ -109,7 +106,7 @@ const Register = () => {
                 <div className="pass">Forgot Password?</div>
                 <input type="submit" />
                 <div className="signup_link">
-                    Already a member? <a href={"login"}>Signin</a>
+                    Already a member? <Link to={"/login"}>Signin</Link>
                 </div>
             </form>
         </div>
