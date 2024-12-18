@@ -12,7 +12,7 @@ import PageNotFound from './PageNotFound';
 const PostDetail = () => {
     const csrfToken = getCSRFToken();
 
-    const { accessToken, auth, errMsg, setErrMsg } = useApiContext();
+    const { accessToken, auth } = useApiContext();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -22,6 +22,7 @@ const PostDetail = () => {
     const socialButtonDivRef = useRef(null);
 
     const [post, setPost] = useState(null);
+    const [errorMsg, setErrorMsg] = useState('');
     const [socialLinks, setSocialLinks] = useState(false)
     const { slug, id } = useParams();
     
@@ -189,14 +190,15 @@ const PostDetail = () => {
                 const response = await axios.get(`http://127.0.0.1:8000/auth/posts/${slug}/${id}`);
                 setPost(response.data)
             } catch (error) {
-                setErrMsg('Post not found');
+                setErrorMsg('Post not found');
                 console.error('Error fetching post details:', error);
             }
         }
         fetchPostDetail();
     },[slug, id]);
 
-    if (errMsg) {
+    if (errorMsg) {
+        setErrorMsg('');
         // If there's an error, render the PageNotFound component or an error message
         return <PageNotFound />
     }
@@ -204,7 +206,7 @@ const PostDetail = () => {
 
     // Extract tagsArray after the post state is updated
     const tagsArray = post ? post.tags.split(',').map(tag => tag.trim()) : [];
-    console.log(post);
+    // console.log(post);
     return (
        
         <>
