@@ -64,21 +64,45 @@ export const ApiProviders = ({ children }) => {
 
             if (response?.status === 200 || response?.status === 201) {
                 navigate(from, { replace: true });
-            }
-       
+            };
          
-              
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 400 || err.response?.status === 401) {
-                setErrMsg('Invalid Username or Password');;
+        } catch (error) {
+            if (!error.response) {
+                // Network or server issue
+                setErrMsg("No Server Response");
             } else {
-                setErrMsg('Login Failed');
+                // Handle specific status codes
+                switch (error.response.status) {
+                    case 400:
+                        setErrMsg("Missing required fields or incorrect data format.");
+                        break;
+                    case 401:
+                        setErrMsg("Invalid username or password.");
+                        break;
+                    case 403:
+                        setErrMsg("Your account is disabled or unauthorized.");
+                        break;
+                    case 404:
+                        setErrMsg("API endpoint not found.");
+                        break;
+                    case 408:
+                        setErrMsg("Request timeout, please try again.");
+                        break;
+                    case 409:
+                        setErrMsg("Username already exists.");
+                        break;
+                    case 422:
+                        setErrMsg("Invalid input, please check the fields.");
+                        break;
+                    case 429:
+                        setErrMsg("Too many login attempts. Please try again later.");
+                        break;
+                    default:
+                        setErrMsg("An unknown error occured.");
+                }
             }
-            console.error("Error details:", err);
-        }
-    }
+        };
+    };
 
     const logOut = (navigate, from) => {
         setUser(false);

@@ -12,6 +12,7 @@ import Footer from './Footer'
 //   )
 // }
 import { Outlet, ScrollRestoration } from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
 
 const Layout = ({ children }) => {
   return (
@@ -19,6 +20,18 @@ const Layout = ({ children }) => {
       <Navbar />
       <Outlet />
       <Footer />
+      <Toaster 
+        position="bottom-right"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        toastOptions={{
+          style: {
+            backgroundColor: "green",
+            color: "white",
+          },
+        }}
+      />
     </div>
   )
 }
