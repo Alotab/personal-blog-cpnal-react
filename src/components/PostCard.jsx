@@ -53,10 +53,8 @@ const Hero = () => {
                             <div className="post-header-title">
                                 <h4>{item?.title}</h4>
                             </div>
-                            <div class="post-tags">
-                              <a class="post-tag-chrome" href="#"><span></span>tags</a>
-                              <a class="post-tag-chrome" href="#"><span></span>python</a>
-
+                            <div className="post-tags">
+                              <Link className="post-tag-chrome"><span></span>tags</Link>
                             </div>
                         </Link>
                       </div>

@@ -228,7 +228,7 @@ const PostDetail = () => {
                                             <>
                                                 <div className="post-edit">
                                                     <Link to={`/auth/posts/${post.slug}/${post.id}`}>Update</Link>
-                                                    {/* <a href="">Update</a> */}
+                                    
                                                 </div>
                                                 <div className="post-delete" onClick={() => onHandleDelete(post.slug, post.id)}>
                                                     <Link>Delete</Link>
@@ -300,27 +300,32 @@ const PostDetail = () => {
                                 {socialLinks && (
                                     <div ref={socialButtonDivRef} className="social-scroll-wrapper">
                                         <div className="social-cs9 share-buttons">
-                                            <a href="#" className="share-button reddit" ref={(el) => sociaMediaRefs.current[0] = el} onClick={() => handleMediaLinks(0)}>
+                                            <Link className="share-button reddit" ref={(el) => sociaMediaRefs.current[0] = el} onClick={() => handleMediaLinks(0)}>
                                                 <i className="ri-reddit-fill"></i><p>Reddit</p>
-                                            </a>
-                                            <a href="#" className="share-button linkedin" ref={(el) => sociaMediaRefs.current[1] = el} onClick={() => handleMediaLinks(1)}>
+                                            </Link>
+                                            <Link className="share-button linkedin" ref={(el) => sociaMediaRefs.current[1] = el} onClick={() => handleMediaLinks(1)}>
                                                 <i className="ri-linkedin-box-fill"></i><p>Linkedin</p>
-                                            </a>
-                                            <a href="#" className="share-button twitch" ref={(el) => sociaMediaRefs.current[2] = el} onClick={() => handleMediaLinks(2)}>
+                                            </Link>
+
+                                            <Link className="share-button twitch" ref={(el) => sociaMediaRefs.current[2] = el} onClick={() => handleMediaLinks(2)}>
                                                 <i className="ri-twitch-fill"></i><p>Twitch</p>
-                                            </a>
-                                            <a href="#" className="share-button whatsapp" ref={(el) => sociaMediaRefs.current[3] = el} onClick={() => handleMediaLinks(3)}>
+                                            </Link>
+                               
+                                            <Link className="share-button whatsapp" ref={(el) => sociaMediaRefs.current[3] = el} onClick={() => handleMediaLinks(3)}>
                                                 <i className="ri-whatsapp-fill"></i><p>Whatsapp</p>
-                                            </a>
-                                            <a href="#" className="share-button facebook" ref={(el) => sociaMediaRefs.current[4] = el} onClick={() => handleMediaLinks(4)}>
+                                            </Link>
+
+                                            <Link className="share-button facebook" ref={(el) => sociaMediaRefs.current[4] = el} onClick={() => handleMediaLinks(4)}>
                                                 <i className="ri-facebook-circle-fill"></i> <p>Facebook</p>
-                                            </a>
-                                            <a className="share-button twitter" href="#" ref={(el) => sociaMediaRefs.current[5] = el} onClick={() => handleMediaLinks(5)}>
+                                            </Link>
+
+                                            <Link className="share-button twitter" ref={(el) => sociaMediaRefs.current[5] = el} onClick={() => handleMediaLinks(5)}>
                                                 <i className="ri-twitter-fill"></i><p>Twitter</p>
-                                            </a>
-                                            <a href="#" className="permalink"  onClick={permalinkShare}>
+                                            </Link>
+
+                                            <Link className="permalink"  onClick={permalinkShare}>
                                                 <i className="ri-links-line"></i><p>Permalink</p>
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 )}; 

@@ -5,8 +5,8 @@ import { FaGithub } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import scrollreveal from 'scrollreveal';
+import { Link } from 'react-router-dom';
 
-// scrollreveal
 
 const Portfolio = () => {
     useEffect(() => {
@@ -48,15 +48,20 @@ const Portfolio = () => {
                     </p>
 
                     <div className="my-social-link-btn">
-                        <a href="https://twitter.com/alazkaBoi " target="_blank">
+                        <Link to="https://twitter.com/alazkaBoi">
                             <FaTwitter />
-                        </a>
-                        <a href="https://github.com/Alotab " target="_blank">
+                        </Link>
+                        <Link to="https://github.com/Alotab ">
                             <FaGithub />
-                        </a>
-                        <a href="https://www.linkedin.com/in/alotab/ " target="_blank">
+                        </Link>
+
+                        <Link to="https://www.linkedin.com/in/alotab/ ">
                             <FaLinkedin />
-                        </a>
+                        </Link>
+                       
+                        {/* <a href="https://www.linkedin.com/in/alotab/ " target="_blank">
+                            
+                        </a> */}
                     </div>
                 </div>
         
