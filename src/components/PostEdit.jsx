@@ -23,7 +23,6 @@ const PostEdit = () => {
     const [slugz, setSlugz] = useState('');
     
 
-
     // checks if tags is an array, else splits a string into array: "tag1, tag2, tag3" => ["tag1", " tag2", " tag3"]
     // trim into => ["tag1", "tag2", "tag3"]
     const tagsArray = Array.isArray(tags) ? tags : tags.split(',').map(tag => tag.trim());
@@ -49,50 +48,32 @@ const PostEdit = () => {
         }
 
         
-   
         try {
             const data = Object.fromEntries(formData);
             console.log('Print formData before Url', data);
 
             const response = await axiosPrivate.put(`/posts/${slug}/${id}`, formData, {
                 headers: {
-                // 'Content-Type': 'multipart/form-data', // Adjust for JSON data if needed
                 'Content-Type': 'multipart/form-data', // Adjust for JSON data if needed
                 'Authorization': `JWT ${accessToken}`, 
-                // 'X-CSRFToken': csrfToken,
                 },
                 
             });
-            console.log('Post Updated successfully:', response.data);
 
-            // const response = await fetch(`http://127.0.0.1:8000/auth/posts/${slug}/${id}`, {
-            //     method: 'PUT',
-            //     headers: {
-            //         'Authorization': `Bearer ${accessToken}`, 
-            //         'X-CSRFToken': csrfToken,  // Include the CSRF token here
-            //     }, 
-            //     body: formData,
-            //     credentials: 'include',  // Ensure cookies (including CSRF token) are sent
-            // });
             console.log('Post Updated successfully:', response);
 
-            // const responseData = await response.json();
           
   
           // Reset the form fields successfull submission
-        //   setContent('');
-        //   setTitle('');
-        //   setTags([]);
-        //   setImage(null);
-        //   setSnippet('');
+          setContent('');
+          setTitle('');
+          setTags([]);
+          setImage(null);
+          setSnippet('');
   
         } catch (error) {
           console.log(error)
         }
-  
-        // for (let [key, value] of formData.entries()) {
-        //   console.log(key, value);
-        // }
     };
 
     // sets content data from the third party Editor textarea
