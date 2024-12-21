@@ -17,7 +17,11 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
-        setIsOpen(!isOpen);
+        setIsOpen(!isOpen); // Toggle the open/close state of the menu
+    }
+
+    const onHideSlideBar = () => {
+        setIsOpen(false) // Close the menu when a link is clicked
     }
 
     
@@ -27,6 +31,7 @@ const Navbar = () => {
         // setUserName(null);
         setAccessToken('');
         setRefreshToken('');
+        setIsOpen(false);
         localStorage.clear();
         <PropagateLoader />
         navigate(from, { replace: true });
@@ -43,7 +48,7 @@ const Navbar = () => {
                 </div>
         
                 {/* Menu bar Icon  */}
-                <button className="mobile-nav-toggle" 
+                {/* <button className="mobile-nav-toggle" 
                     aria-controls="primary-navigation" aria-expanded="false">
                     <span className="sr-only">
                         <i className="ri-menu-line"></i>
@@ -54,8 +59,7 @@ const Navbar = () => {
                     <span className="sr-only">
                         <i className="ri-close-line"></i>
                     </span> 
-                    {/* <!--- add menu there to help screen readers know is not just an icon but a menu button--> */}
-                </button>
+                </button> */}
 
 
                 {/* <!-- Navigation links --> */}
@@ -70,23 +74,20 @@ const Navbar = () => {
                             />
                         </div>
                         
-                        <nav className={`primary-navigation ${isOpen ? 'open': ''}`} data-visible={isOpen ? 'true' : 'false'}>
-                        
-                            {/* className="primary-navigation" */}
+                        <nav className={`primary-navigation ${isOpen ? 'open': ''}`}  data-visible={isOpen ? 'true' : 'false'}>
                             <ul id="primary-navigation"> 
-                                <li> <Link to={"/create-post"} className='nav-element'>Write</Link></li>
-                                <li> <Link to={"/portfolio"} className='nav-element'>Portfolio</Link></li>
+                                <li> <Link to={"/create-post"} onClick={onHideSlideBar} className='nav-element'>Write</Link></li>
+                                <li> <Link to={"/portfolio"} onClick={onHideSlideBar} className='nav-element'>Portfolio</Link></li>
                                 { auth.username 
                                 ?  ( 
                                     <>
                                         <li><Link to={"/"} onClick={logOut} className='nav-element'>Logout</Link></li>
-                                        <li> <Link to={"/profile"} className='nav-element'>Profile</Link></li>
+                                        <li><Link to={"profile"} onClick={onHideSlideBar} className='nav-element'>Profile</Link></li>
                                     </>
                                     )
                                 :
-                                    (<li><Link to={"login"} className='nav-element'>Login</Link></li>)
+                                    (<li><Link to={"login"} onClick={onHideSlideBar} className='nav-element'>Login</Link></li>)
                                 }
-                                
                             </ul>
                         </nav>
                     </div>

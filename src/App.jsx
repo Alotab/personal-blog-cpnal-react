@@ -15,25 +15,25 @@ import PostEdit from "./components/PostEdit";
 import PageNotFound from "./components/PageNotFound";
 import RequireAuth from "./components/RequireAuth";
 import NotAuthorized from "./components/NotAuthorized";
-
+import ScrollToTop from "./utils/ScrollToTop";
 
 const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Homepage />} />
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
-          {/* <Route path="register" element={<Register />} /> */}
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="profile" element={<Profile />} />
-          {/* <Route path="create-post" element={<EditorBox />} /> */}
           <Route path="/posts/:slug/:id" element={<PostDetail />} />
           <Route path="/auth/posts/:slug/:id" element={<PostEdit />} />
           <Route path="/page-not-authorzed" element={<NotAuthorized />}/>
-
+          {/* <Route path="create-post" element={<EditorBox />} /> */}
+          
           {/* Protected Routes  */}
           <Route path="create-post" 
             element={
