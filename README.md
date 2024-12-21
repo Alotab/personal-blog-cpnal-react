@@ -25,7 +25,7 @@ A full-stack blog application built with React for the front-end and Django Rest
 1. Clone the repository:
 
    ```
-   git clone https://github.com/Alotab/personal-blog-cpnal-react.git
+   git clone https://github.com/Alotab/personal-blog-react.git
    ```
 2. Navigate to the React app directory:
 
