@@ -222,7 +222,7 @@ const PostDetail = () => {
                                         <img src={post.author_info.profile_picture} alt={post.author.first_name} />
                                         <div className="author-name">
                                             <p className="author-name-link">{post.author.first_name} {post.author.last_name}</p>
-                                            <p id="time-tag" className="publish">Posted on {formatDate(post.publish)} &middot; {post.read_time} read</p>
+                                            <p id="time-tag" className="publish">Posted on {formatDate(post.publish)} &middot; {post.read_time} mins read</p>
                                         </div>
                                         { auth.id == post.author ? 
                                             <>
