@@ -47,12 +47,12 @@ A full-stack blog application built with React for the front-end and Django Rest
 ### Backend (Django Rest Framework)
 1. Clone or download the Django project containing the API:
    ```
-   git clone https://github.com/Alotab/personal-blog-cpanel.git
+   git clone https://github.com/Alotab/django-rest-framework.git
    ```
 
 2. Navigate to the Django project directory:
    ```
-   cd personal-blog-cpanel
+   cd django-rest-framework
    ```
 
 3. Create a virtual environment:
